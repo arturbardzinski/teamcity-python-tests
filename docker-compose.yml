@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  teamcity-server:
+    image: jetbrains/teamcity-server:latest
+    container_name: teamcity-server
+    ports:
+      - "8111:8111"
+    volumes:
+      - ./data/teamcity_server/datadir:/data/teamcity_server/datadir
+      - ./data/teamcity_server/logs:/opt/teamcity/logs
+
+  teamcity-agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: teamcity-agent
+    depends_on:
+      - teamcity-server
+    environment:
+      - SERVER_URL=http://teamcity-server:8111
+    volumes:
+      - ./tests:/tests
