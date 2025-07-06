@@ -2,7 +2,6 @@ FROM jetbrains/teamcity-agent:latest
 
 USER root
 
-# Instalacja Pythona, Pipenv i Allure
 RUN apt-get update && apt-get install -y \
     python3.10 python3-pip curl unzip \
     && pip3 install pipenv \
@@ -16,6 +15,4 @@ WORKDIR /tests
 COPY Pipfile* ./
 RUN pipenv install --system --deploy --ignore-pipfile
 
-COPY tests/ .
-
-CMD ["sleep", "infinity"]
+CMD ["/opt/buildagent/bin/agent.sh", "run"]
