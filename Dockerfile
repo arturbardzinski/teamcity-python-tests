@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /tests
 
 COPY Pipfile* ./
-RUN pipenv install --system --deploy --ignore-Pipfile
+RUN pipenv install --system --deploy --ignore-pipfile
 
 COPY tests/ .
 
