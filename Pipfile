@@ -8,6 +8,7 @@ pytest = "*"
 allure-pytest = "*"
 requests = "*"
 exceptiongroup = "*"
+typing-extensions = "*"
 
 [requires]
 python_version = "3.10"
