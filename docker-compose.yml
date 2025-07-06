@@ -11,13 +11,11 @@ services:
       - ./data/teamcity_server/logs:/opt/teamcity/logs
 
   teamcity-agent:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: jetbrains/teamcity-agent:latest
     container_name: teamcity-agent
-    depends_on:
-      - teamcity-server
+    user: root
     environment:
       - SERVER_URL=http://teamcity-server:8111
     volumes:
-      - ./tests:/tests
+      - ./data/teamcity_agent/conf:/data/teamcity_agent/conf
+      - /var/run/docker.sock:/var/run/docker.sock
