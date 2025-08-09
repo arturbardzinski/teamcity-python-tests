@@ -8,3 +8,4 @@ def test_addition():
 @allure.feature("String")
 def test_uppercase():
     assert "abc".upper() == "ABC"
+
