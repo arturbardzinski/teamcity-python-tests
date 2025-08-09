@@ -19,3 +19,13 @@ services:
     volumes:
       - ./data/teamcity_agent/conf:/data/teamcity_agent/conf
       - /var/run/docker.sock:/var/run/docker.sock
+
+  teamcity-agent-2:
+    image: jetbrains/teamcity-agent:latest
+    container_name: teamcity-agent-2
+    user: root
+    environment:
+      - SERVER_URL=http://teamcity-server:8111
+    volumes:
+      - ./data/teamcity_agent_2/conf:/data/teamcity_agent/conf
+      - /var/run/docker.sock:/var/run/docker.sock
